@@ -1,0 +1,16 @@
+# NPM
+/node_modules
+
+# Grunt dist
+/dist
+/.tmp
+/.sass-cache
+
+# Bower
+/bower_components
+
+# Mac OS X
+.DS_Store
+
+# Jetbrains IDE
+.idea
