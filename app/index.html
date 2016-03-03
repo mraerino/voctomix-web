@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -20,47 +21,43 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <a class="navbar-brand" href="#/">voctomixWeb</a>
+    <div layout="row" style="height: 100%" ng-controller="MainCtrl">
+      <div flex></div>
+      <div layout="row" layout-wrap style="max-width: 960px; width: 100%">
+        <div flex-gt-sm="60">
+          <md-subheader>A mix</md-subheader>
+          <div id="mix-layer-a">
+            <md-button class="md-raised" ng-click="select_source('a', name)" ng-class="state.a == name ? 'active':''" ng-repeat="name in topo.sources">{{name}}</md-button>
           </div>
-
-          <div class="collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
+          <md-subheader>B mix</md-subheader>
+          <div id="mix-layer-b">
+            <md-button class="md-raised" ng-click="select_source('b', name)" ng-class="state.b == name ? 'active':''" ng-repeat="name in topo.sources">{{name}}</md-button>
           </div>
         </div>
+        <div flex-gt-sm="40">
+          <md-list>
+            <md-subheader>Mix mode</md-subheader>
+            <md-list-item ng-repeat="mode in mix_modes"
+                          ng-class="state.composite_mode == mode.ident ? 'md-active':''"
+                          ng-click="set_composite_mode(mode.ident)">
+              <md-icon class="material-icons">{{ mode.icon }}</md-icon>
+              <p>{{ mode.name }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader>Stream blanking</md-subheader>
+            <md-list-item>
+              <md-icon class="material-icons">cloud</md-icon>
+              <p>Stream on</p>
+            </md-list-item>
+            <md-list-item>
+              <md-icon class="material-icons">cloud_off</md-icon>
+              <p>Stream off</p>
+            </md-list-item>
+          </md-list>
+        </div>
       </div>
+      <div flex></div>
     </div>
-
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -70,13 +67,16 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="bower_components/angular-noVNC/dist/angular-noVNC.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>
